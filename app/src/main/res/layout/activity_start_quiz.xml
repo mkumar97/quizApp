@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    tools:context=".StartQuiz">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/quesid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textColor="#3634A3"
+            android:textSize="24sp"
+            android:text="What Country does this belong?"
+            />
+
+        <ImageView
+            android:id="@+id/flag"
+            android:layout_width="wrap_content"
+            android:layout_height="215dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/australia" />
+
+        <LinearLayout
+            android:id="@+id/progressdetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:indeterminate="false"
+                android:max="2"
+                android:minHeight="50dp"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textSize="14sp"
+                android:text="0/2"
+                android:textColorHint="#7A8089"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:id="@+id/optionOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="#7A8089"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:background="@drawable/optionborder"
+                android:padding="15dp"
+                />
+
+            <TextView
+                android:id="@+id/optionTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:textColor="#7A8089"
+                android:textSize="16sp"
+                android:background="@drawable/optionborder"
+                android:padding="15dp"
+                />
+
+            <TextView
+                android:id="@+id/optionThree"
+                android:layout_width="match_parent"
+                android:background="@drawable/optionborder"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="#7A8089"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:padding="15dp"
+                />
+
+            <TextView
+                android:id="@+id/optionFour"
+                android:background="@drawable/optionborder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:textColor="#7A8089"
+                android:padding="15dp"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="SUBMIT"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:textColor="#efefef"/>
+
+    </LinearLayout>
+
+</ScrollView>
