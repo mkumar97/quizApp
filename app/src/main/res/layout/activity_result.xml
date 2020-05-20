@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    android:background="@drawable/app_bckgrnd"
+    tools:context=".ResultActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"/>
+
+
+    <TextView
+        android:id="@+id/displayname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Congratulations!!! Mr $"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/displayscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="Your Score is !"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textStyle="italic"/>
+
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Re Attempt!"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="italic"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"/>
+
+
+</LinearLayout>

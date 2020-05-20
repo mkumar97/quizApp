@@ -1,5 +1,7 @@
 package com.example.quizapp
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -16,35 +18,36 @@ class StartQuiz : AppCompatActivity() , View.OnClickListener {
     private var currentPos: Int = 1
     private var questionList: ArrayList<QuestionPaper>? = null
     private var selectedoption: Int = 0
+    private var score = 0
+    private var username: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_quiz)
 
+        username = intent.getStringExtra(Constants.USER_NAME)
         questionList = Constants.getQuestions()
-        setQuestion(currentPos)
+        setQuestion()
 
         optionOne.setOnClickListener(this)
         optionTwo.setOnClickListener(this)
         optionThree.setOnClickListener(this)
         optionFour.setOnClickListener(this)
-        submit.setOnClickListener {
-            currentPos++;
-            if (currentPos <=2 ) {setQuestion(currentPos)}
-            else {Toast.makeText(this, "Congratulations, Questions are Completed", Toast.LENGTH_LONG).show()}
-        }
+        submit.setOnClickListener(this)
     }
 
-    private fun setQuestion(quesno: Int){
+    private fun setQuestion(){
 
-        currentPos = quesno
+        // currentPos = quesno
         val question = questionList!![currentPos - 1]
 
         progressBar.progress = currentPos
         progress.text = "$currentPos" + "/" + progressBar.max
 
         defaultOption()
+
+        if (selectedoption == 0) {submit.text = "SUBMIT"}
 
         quesid.text = question!!.question
         flag.setImageResource(question.image)
@@ -74,6 +77,47 @@ class StartQuiz : AppCompatActivity() , View.OnClickListener {
             R.id.optionTwo->{selectedOption(optionTwo, 2)}
             R.id.optionThree->{selectedOption(optionThree, 3)}
             R.id.optionFour->{selectedOption(optionFour, 4)}
+            R.id.submit-> {
+                if (selectedoption == 0) {
+                    currentPos ++
+
+                    when {
+                        currentPos <= questionList!!.size ->
+                        { setQuestion() }
+                        else -> {
+                            val intent = Intent(this, ResultActivity::class.java)
+                            intent.putExtra(Constants.CORRECT_ANSWERS, score)
+                            intent.putExtra(Constants.USER_NAME, username)
+                            intent.putExtra(Constants.TOTAL_QUESTIONS, questionList!!.size)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                }
+                else {
+                    val question = questionList?.get(currentPos - 1)
+                    if(question!!.correctAnswer != selectedoption){
+                        answerView(selectedoption, R.drawable.wrongoptionborder)
+                    }else { score ++ }
+                    answerView(question.correctAnswer, R.drawable.correctoptionborder)
+
+                    if(currentPos == questionList!!.size){
+                        submit.text = "FINISH"
+                    }else{
+                        submit.text = "GO TO NEXT QUESTION"
+                    }
+                    selectedoption = 0
+                }
+            }
+        }
+    }
+
+    private fun answerView(answer: Int, drawableView: Int){
+        when(answer){
+            1-> {optionOne.background = ContextCompat.getDrawable(this, drawableView)}
+            2-> {optionTwo.background = ContextCompat.getDrawable(this, drawableView)}
+            3-> {optionThree.background = ContextCompat.getDrawable(this, drawableView)}
+            4-> {optionFour.background = ContextCompat.getDrawable(this, drawableView)}
         }
     }
 
@@ -84,4 +128,6 @@ class StartQuiz : AppCompatActivity() , View.OnClickListener {
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(this, R.drawable.selectedoption)
     }
+
+
 }
